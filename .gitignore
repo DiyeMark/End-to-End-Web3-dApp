@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Algorand Sandbox
+backend/_sandbox/
+
 # C extensions
 *.so
 
