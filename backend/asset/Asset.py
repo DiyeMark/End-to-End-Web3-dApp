@@ -33,16 +33,15 @@ algod_token = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 # Initialize an algod client
 algod_client = algod.AlgodClient(algod_token=algod_token, algod_address=algod_address)
 
-# CREATE ASSET
-# Get network params for transactions before every transaction.
-params = algod_client.suggested_params()
-
 
 class Asset:
     def __init__(self):
         pass
 
     def create_asset(self, for_student):
+        # CREATE ASSET
+        # Get network params for transactions before every transaction.
+        params = algod_client.suggested_params()
         txn = AssetConfigTxn(
             sender=accounts[1]['pk'],
             sp=params,
@@ -141,7 +140,7 @@ class Asset:
             sender=accounts[1]['pk'],
             sp=params,
             receiver=accounts[3]["pk"],
-            amt=10,
+            amt=1,
             index=asset_id)
         stxn = txn.sign(accounts[1]['sk'])
         # Send the transaction to the network and retrieve the txid.
@@ -164,7 +163,8 @@ class Asset:
         pass
 
 
-
-
-asset = Asset()
-asset.create_asset(for_student="Denamo")
+# asset = Asset()
+# asset.create_asset(for_student="Denamo")
+# Asset ID: 95970040
+# asset.receive_asset(asset_id=95970040)
+# asset.transfer_asset(asset_id=95970040)
