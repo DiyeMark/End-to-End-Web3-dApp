@@ -1,12 +1,11 @@
 import json
 
-from flask import Flask, jsonify
-from algosdk.v2client import algod
-from algosdk import account, mnemonic
-from algosdk.future.transaction import AssetConfigTxn
-from algosdk.future.transaction import *
-
-from backend.helpers.AssetHelper import print_created_asset, print_asset_holding
+from flask import Flask, jsonify, render_template
+# from algosdk.v2client import algod
+# from algosdk import account, mnemonic
+# from algosdk.future.transaction import AssetConfigTxn
+# from algosdk.future.transaction import *
+# from backend.helpers.AssetHelper import print_created_asset, print_asset_holding
 
 app = Flask(__name__)
 
@@ -137,9 +136,10 @@ def transfer_asset():
     pass
 '''
 
+
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return render_template('index.html')
 
 
 @app.route("/health")

@@ -6,6 +6,13 @@ __pycache__/
 # Algorand Sandbox
 backend/_sandbox/
 
+# Pycharm files
+.idea/
+
+# Mac OS files
+.DS_Store
+backend/.DS_Store
+
 # C extensions
 *.so
 
