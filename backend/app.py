@@ -1,13 +1,50 @@
 import json
+import os
 
 from flask import Flask, jsonify, render_template
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+from functools import wraps
+import uuid
+import datetime
+from dotenv import load_dotenv
+
 # from algosdk.v2client import algod
 # from algosdk import account, mnemonic
 # from algosdk.future.transaction import AssetConfigTxn
 # from algosdk.future.transaction import *
 # from backend.helpers.AssetHelper import print_created_asset, print_asset_holding
+from backend.databases.db import initialize_db
+from flask_restful import Api
+from flask_bcrypt import Bcrypt
+from flask_jwt_extended import (JWTManager,
+                                jwt_required)
+
+from backend.resources.error import errors
+from backend.resources.routes import initialize_routes
 
 app = Flask(__name__)
+# app.config.from_envvar('ENV_FILE_LOCATION')
+
+
+api = Api(app, errors=errors)
+bcrypt = Bcrypt(app)
+
+# JWT Config
+# app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
+app.config["JWT_SECRET_KEY"] = "JwT-S3cR3t-K3y-F0:V3nTG3m3nAy3B0t"
+jwt = JWTManager(app)
+
+
+# Mongo Config
+mongo_db_host = os.getenv('MONGO_HOST')
+app.config["MONGODB_SETTINGS"] = {
+    # 'host': f'mongodb://{mongo_db_host}:27017/10Academy_Certificate_Db'
+    'host': 'mongodb://localhost:27017/10Academy_Certificate_Db'
+}
+initialize_db(app)
+
+initialize_routes(api)
 
 '''
 def generate_algorand_keypair():
@@ -138,7 +175,7 @@ def transfer_asset():
 
 
 @app.route("/")
-def hello_world():
+def main():
     return render_template('index.html')
 
 
@@ -150,4 +187,4 @@ def health():
 
 
 if __name__ == '__main__':
-    pass
+    app.run(host='localhost', port=8080)
