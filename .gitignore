@@ -3,6 +3,16 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Algorand Sandbox
+backend/_sandbox/
+
+# Pycharm files
+.idea/
+
+# Mac OS files
+.DS_Store
+backend/.DS_Store
+
 # C extensions
 *.so
 
