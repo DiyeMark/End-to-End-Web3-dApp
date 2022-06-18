@@ -1,5 +1,5 @@
 from flask import Response, request, jsonify, make_response
-from backend.models import Trainee
+from backend.models.Trainee import Trainee
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required
 from mongoengine.errors import (FieldDoesNotExist,

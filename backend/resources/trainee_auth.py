@@ -19,6 +19,7 @@ class TraineeSignupApi(Resource):
             print(body)
             trainee = Trainee(**body)
             trainee.hash_password()
+            trainee.generate_algorand_keypair()
             trainee.save()
             id = trainee.id
             return {'id': str(id)}, 200
