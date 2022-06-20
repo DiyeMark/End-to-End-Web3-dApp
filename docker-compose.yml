@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    volumes:
+      - data:/data/db
+  flask:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+  react:
+    build: ./frontend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - flask
+
+volumes:
+  data:
