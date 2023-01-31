@@ -54,8 +54,10 @@ function App() {
               />
             </Form.Item>
             <Form.Item>
-              <Button type="danger" htmlType="submit" className="">
-                Log in
+              <Button type="danger" htmlType="submit" >
+                <span className="hover:font-bold">
+                  Log in
+                </span>
               </Button>
             </Form.Item>
           </Form>
